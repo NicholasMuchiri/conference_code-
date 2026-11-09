@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register | Student Technology and Innovation Conference</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="site-nav" aria-label="Main">
+        <div class="nav-inner">
+            <a class="brand" href="index.html">STIC 2026</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#fees">Fees</a></li>
+                <li><a class="active" href="register.html" aria-current="page">Register</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container">
+
+        <div class="page-head">
+            <h1>Conference registration</h1>
+            <p>Fields marked <span class="req" aria-hidden="true">*</span><span class="sr-only">with an asterisk</span> are required.
+               The fee summary updates as you choose your options.</p>
+        </div>
+
+        <div class="reg-layout">
+
+            <!-- Registration form -->
+            <form id="regForm" action="process.php" method="post" novalidate>
+
+                <fieldset>
+                    <legend>Personal details</legend>
+
+                    <div class="field">
+                        <label for="fullname">Full name <span class="req" aria-hidden="true">*</span></label>
+                        <input type="text" id="fullname" name="fullname" autocomplete="name"
+                               required aria-describedby="fullnameError">
+                        <span class="error-msg" id="fullnameError"></span>
+                    </div>
+
+                    <div class="field-row">
+                        <div class="field">
+                            <label for="admission">Admission / registration number <span class="req" aria-hidden="true">*</span></label>
+                            <input type="text" id="admission" name="admission" placeholder="e.g. BIT/1234/2026"
+                                   required aria-describedby="admissionError">
+                            <span class="error-msg" id="admissionError"></span>
+                        </div>
+
+                        <div class="field">
+                            <label for="year">Year of study <span class="req" aria-hidden="true">*</span></label>
+                            <select id="year" name="year" required aria-describedby="yearError">
+                                <option value="">Select year</option>
+                                <option value="1">Year 1</option>
+                                <option value="2">Year 2</option>
+                                <option value="3">Year 3</option>
+                                <option value="4">Year 4</option>
+                                <option value="5">Year 5</option>
+                            </select>
+                            <span class="error-msg" id="yearError"></span>
+                        </div>
+                    </div>
+
+                    <div class="field-row">
+                        <div class="field">
+                            <label for="email">Email address <span class="req" aria-hidden="true">*</span></label>
+                            <input type="email" id="email" name="email" autocomplete="email"
+                                   required aria-describedby="emailError">
+                            <span class="error-msg" id="emailError"></span>
+                        </div>
+
+                        <div class="field">
+                            <label for="phone">Phone number <span class="req" aria-hidden="true">*</span></label>
+                            <input type="tel" id="phone" name="phone" inputmode="numeric" autocomplete="tel"
+                                   placeholder="10 digits, e.g. 0712345678" maxlength="10"
+                                   required aria-describedby="phoneError">
+                            <span class="error-msg" id="phoneError"></span>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Participation</legend>
+
+                    <div class="field-row">
+                        <div class="field">
+                            <label for="category">Participation category <span class="req" aria-hidden="true">*</span></label>
+                            <select id="category" name="category" required aria-describedby="categoryError">
+                                <option value="">Select category</option>
+                                <option value="conference">Conference Only</option>
+                                <option value="workshop">Workshop Participant</option>
+                            </select>
+                            <span class="error-msg" id="categoryError"></span>
+                        </div>
+
+                        <div class="field">
+                            <label for="days">Number of conference days <span class="req" aria-hidden="true">*</span></label>
+                            <input type="number" id="days" name="days" min="1" max="3" value="1"
+                                   required aria-describedby="daysHint daysError">
+                            <span class="hint" id="daysHint">Between 1 and 3 days.</span>
+                            <span class="error-msg" id="daysError"></span>
+                        </div>
+                    </div>
+
+                    <!-- Shown only for Workshop Participant -->
+                    <div class="field hidden" id="workshopGroup">
+                        <label for="workshop">Workshop selection <span class="req" aria-hidden="true">*</span></label>
+                        <select id="workshop" name="workshop" aria-describedby="workshopError">
+                            <option value="">Select workshop</option>
+                            <option value="Web Development">Web Development</option>
+                            <option value="Artificial Intelligence">Artificial Intelligence</option>
+                            <option value="Cybersecurity">Cybersecurity</option>
+                        </select>
+                        <span class="error-msg" id="workshopError"></span>
+                    </div>
+
+                    <div class="field">
+                        <label for="meal">Meal option</label>
+                        <select id="meal" name="meal">
+                            <option value="none">No meals</option>
+                            <option value="lunch">Lunch each day</option>
+                        </select>
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Accommodation</legend>
+
+                    <div class="field">
+                        <div class="check-row">
+                            <input type="checkbox" id="accommodation" name="accommodation" value="yes">
+                            <label for="accommodation">I need accommodation (KSh 1,500 per night)</label>
+                        </div>
+                    </div>
+
+                    <!-- Shown only when accommodation is ticked -->
+                    <div class="field hidden" id="nightsGroup">
+                        <label for="nights">Number of nights <span class="req" aria-hidden="true">*</span></label>
+                        <input type="number" id="nights" name="nights" min="1" max="3" value="1"
+                               aria-describedby="nightsHint nightsError">
+                        <span class="hint" id="nightsHint">Up to the number of conference days.</span>
+                        <span class="error-msg" id="nightsError"></span>
+                    </div>
+                </fieldset>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn">Submit registration</button>
+                    <button type="button" class="btn btn-secondary" id="resetBtn">Clear form</button>
+                    <span class="inline-total">Estimated total <strong id="feeTotalInline">KSh 0</strong></span>
+                </div>
+            </form>
+
+            <!-- Fee summary -->
+            <aside class="fee-panel" aria-labelledby="feeHeading" aria-live="polite">
+                <h2 id="feeHeading">Fee summary</h2>
+                <p class="status">Provisional estimate</p>
+                <p class="package-note" id="packageNote">Choose a category to see your package.</p>
+
+                <table class="summary-table">
+                    <tr>
+                        <td>Registration</td>
+                        <td id="feeRegistration">KSh 0</td>
+                    </tr>
+                    <tr>
+                        <td>Attendance<small id="detailAttendance"></small></td>
+                        <td id="feeAttendance">KSh 0</td>
+                    </tr>
+                    <tr>
+                        <td>Workshop<small id="detailWorkshop"></small></td>
+                        <td id="feeWorkshop">KSh 0</td>
+                    </tr>
+                    <tr>
+                        <td>Meals<small id="detailMeals"></small></td>
+                        <td id="feeMeals">KSh 0</td>
+                    </tr>
+                    <tr>
+                        <td>Accommodation<small id="detailAccommodation"></small></td>
+                        <td id="feeAccommodation">KSh 0</td>
+                    </tr>
+                    <tr class="total-row">
+                        <td>Estimated total</td>
+                        <td id="feeTotal">KSh 0</td>
+                    </tr>
+                </table>
+
+                <p class="fine-print">This is an estimate. The final amount is calculated and confirmed
+                   by the server when you submit.</p>
+            </aside>
+
+        </div>
+    </main>
+
+    <footer>
+        Student Technology and Innovation Conference 2026
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
